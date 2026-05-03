@@ -1,0 +1,21 @@
+{
+  "name": "rift",
+  "version": "1.0.0",
+  "description": "Fokus AI is an AI-powered learning and certification platform that combines  \r **Generative AI + Algorand Blockchain** to create tamper-proof, verifiable digital certificates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarshanPawar23/RIFT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DarshanPawar23/RIFT/issues"
+  },
+  "homepage": "https://github.com/DarshanPawar23/RIFT#readme"
+}
