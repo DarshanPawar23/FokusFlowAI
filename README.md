@@ -1,8 +1,9 @@
 # 🚀 Fokus AI  
 ### AI-Powered Course Generation & Intelligent Certification
 
-Fokus AI is an advanced learning platform that transforms static YouTube playlists into structured, interactive educational experiences. By leveraging the **Groq Cloud API** and **Llama 3**, it automates course curation, provides AI-driven assessments, and issues professional certificates directly to a user's inbox.
+Fokus AI is an advanced AI-powered learning platform that converts unstructured YouTube playlists into structured, interactive courses.
 
+Powered by the **Groq Cloud API** and the **LLaMA 3.1 (8B Instant)** model, it intelligently analyzes video content to generate course modules, produce concise summaries, create dynamic assessments, and automatically deliver professional certificates to users via email.
 ---
 
 ## 🧠 The Problem
