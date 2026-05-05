@@ -49,19 +49,18 @@ Fokus AI automates the "Learner-to-Certified" pipeline through four core pillars
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/fokus-ai.git
-cd fokus-ai
-
-## ⚙️ Setup & Run (All-in-One)
+## 🚀 Getting Started (All-in-One)
 
 ```bash
 # ==============================
-# 1️⃣ Install Dependencies
+# 1️⃣ Clone the Repository
+# ==============================
+
+git clone https://github.com/your-username/fokus-ai.git
+cd fokus-ai
+
+# ==============================
+# 2️⃣ Install Dependencies
 # ==============================
 
 # Install backend dependencies
@@ -73,10 +72,10 @@ npm install
 cd ..
 
 # ==============================
-# 2️⃣ Environment Setup
+# 3️⃣ Environment Setup
 # ==============================
 
-# Create a .env file in root and add:
+# Create a .env file in root and add the following:
 
 PORT=5000
 JWT_SECRET=your_jwt_secret
@@ -94,7 +93,7 @@ EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_app_password
 
 # ==============================
-# 3️⃣ Run Application
+# 4️⃣ Run Application
 # ==============================
 
 # Run backend (from root)
