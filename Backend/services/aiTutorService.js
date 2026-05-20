@@ -13,8 +13,8 @@ export const generateAITutorResponse = async ({ question, transcript, videoTitle
       {
         model: "llama-3.1-8b-instant", // Using a higher-tier model for better JSON logic
         messages: [
-          { 
-            role: "system", 
+          {
+            role: "system",
             content: `You are an elite AI Tutor. You explain concepts step-by-step for beginners.
             You must respond ONLY with a valid JSON object. 
             Do not include markdown formatting or extra text.

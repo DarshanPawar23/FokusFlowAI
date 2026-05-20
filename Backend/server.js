@@ -1,5 +1,4 @@
 import express from "express"
-import db from "./db/db.js";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes.js"
 import router from "./routes/certificateRoutes.js"
@@ -13,18 +12,18 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
-app.use("/api/certificate" ,router);
+app.use("/api/certificate", router);
 
 app.get("/", (req, res) => {
     res.send("Server is running ");
 });
 app.get("/list-models", async (req, res) => {
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY}`
-  );
+    const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY}`
+    );
 
-  const data = await response.json();
-  res.json(data);
+    const data = await response.json();
+    res.json(data);
 });
 app.get("/test-search", async (req, res) => {
     try {
@@ -39,6 +38,6 @@ app.get("/test-search", async (req, res) => {
     }
 });
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`connected at the ${port}`);
 })

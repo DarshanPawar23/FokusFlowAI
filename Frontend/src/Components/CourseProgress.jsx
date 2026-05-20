@@ -11,8 +11,8 @@ function CourseProgress() {
         fetchCourses();
     }, []);
     useEffect(() => {
-    console.log("COURSES FROM API ", courses);
-}, [courses]);
+        console.log("COURSES FROM API ", courses);
+    }, [courses]);
 
     const fetchCourses = async () => {
         try {
@@ -138,5 +138,4 @@ function CourseProgress() {
         </div>
     );
 }
-
 export default CourseProgress;

@@ -24,7 +24,7 @@ const CertificateDisplay = ({
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
-   console.log("CERT DATA:", certificateId, txId, courseName);
+  console.log("CERT DATA:", certificateId, txId, courseName);
 
   return (
     <div className="flex flex-col items-center space-y-6">
@@ -42,7 +42,6 @@ const CertificateDisplay = ({
         }}
       >
 
-        {/* Student Name */}
         <div
           style={{
             position: "absolute",

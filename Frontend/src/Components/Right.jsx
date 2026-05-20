@@ -13,8 +13,6 @@ function Right() {
 
   return (
     <div className="h-full flex flex-col bg-[#0d0d0d] border-l border-white/5 shadow-2xl overflow-hidden">
-
-      {/* ===== HEADER TABS ===== */}
       <div className="relative flex bg-[#141414] border-b border-white/5 backdrop-blur-xl">
 
         {tabs.map((tab) => {
@@ -31,9 +29,8 @@ function Right() {
             >
               <Icon
                 size={15}
-                className={`transition-all duration-300 ${
-                  isActive ? "text-red-500 scale-110" : "text-gray-600"
-                }`}
+                className={`transition-all duration-300 ${isActive ? "text-red-500 scale-110" : "text-gray-600"
+                  }`}
               />
               <span>{tab.label}</span>
             </button>
@@ -63,7 +60,6 @@ function Right() {
         />
       </div>
 
-      {/* ===== BODY ===== */}
       <div className="flex-grow relative overflow-hidden">
 
         <div
@@ -75,28 +71,23 @@ function Right() {
                 : "translateX(-50%)",
           }}
         >
-
-          {/* COURSE CONTENT */}
           <div className="w-1/2 h-full overflow-y-auto no-scrollbar bg-[#0a0a0a]">
             <div
-              className={`transition-all duration-500 ${
-                activeTab === "content"
+              className={`transition-all duration-500 ${activeTab === "content"
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
-              }`}
+                }`}
             >
               <CourseContent />
             </div>
           </div>
 
-          {/* AI TUTOR */}
           <div className="w-1/2 h-full overflow-y-auto no-scrollbar bg-[#0b0b0b] border-l border-white/5">
             <div
-              className={`transition-all duration-500 ${
-                activeTab === "tutor"
+              className={`transition-all duration-500 ${activeTab === "tutor"
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
-              }`}
+                }`}
             >
               <AITutor />
             </div>
@@ -106,5 +97,4 @@ function Right() {
     </div>
   );
 }
-
 export default Right;

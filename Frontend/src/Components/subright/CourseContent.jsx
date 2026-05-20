@@ -30,22 +30,22 @@ function CourseContent() {
     setSections(updated);
     localStorage.setItem("currentCourse", JSON.stringify(updated));
 
-   const playlistId = localStorage.getItem("currentPlaylistId");
+    const playlistId = localStorage.getItem("currentPlaylistId");
 
-if (!playlistId) {
-  console.error("Playlist ID missing at video click");
-  return;
-}
+    if (!playlistId) {
+      console.error("Playlist ID missing at video click");
+      return;
+    }
 
-localStorage.setItem(
-  "currentVideo",
-  JSON.stringify({
-    playlistId,
-    videoId: selectedVideo.videoId,
-    title: selectedVideo.title
-  })
-);
-console.log("Saving video with playlistId:", playlistId);
+    localStorage.setItem(
+      "currentVideo",
+      JSON.stringify({
+        playlistId,
+        videoId: selectedVideo.videoId,
+        title: selectedVideo.title
+      })
+    );
+    console.log("Saving video with playlistId:", playlistId);
 
     localStorage.setItem(
       "currentTranscript",
@@ -110,19 +110,19 @@ It teaches:
                     key={video.videoId}
                     onClick={() => handleVideoClick(sectionIndex, videoIndex)}
                     className={`flex items-center px-10 py-3 text-sm cursor-pointer transition-all ${video.status === "playing"
-                        ? "bg-red-600/10 text-red-500"
-                        : video.status === "completed"
-                          ? "text-green-400"
-                          : "text-gray-300 hover:bg-white/[0.04]"
+                      ? "bg-red-600/10 text-red-500"
+                      : video.status === "completed"
+                        ? "text-green-400"
+                        : "text-gray-300 hover:bg-white/[0.04]"
                       }`}
                   >
                     <PlayCircle
                       size={16}
                       className={`mr-3 ${video.status === "playing"
-                          ? "text-red-500"
-                          : video.status === "completed"
-                            ? "text-green-400"
-                            : "text-gray-500"
+                        ? "text-red-500"
+                        : video.status === "completed"
+                          ? "text-green-400"
+                          : "text-gray-500"
                         }`}
                     />
 

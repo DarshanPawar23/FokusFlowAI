@@ -13,7 +13,6 @@ function Notes() {
   const playlistId = currentVideo?.playlistId;
   const videoId = currentVideo?.videoId;
 
-  // ================= FETCH NOTES =================
   const fetchNotes = async () => {
     if (!playlistId) return;
 
@@ -51,7 +50,6 @@ function Notes() {
     fetchNotes();
   }, [filterType, playlistId, videoId]);
 
-  // ================= ADD NOTE =================
   const handleAddNote = async () => {
     if (!noteText.trim() || !playlistId || !videoId) return;
 
@@ -107,22 +105,20 @@ function Notes() {
       <div className="flex space-x-4 text-xs">
         <button
           onClick={() => setFilterType("current")}
-          className={`px-3 py-1 rounded ${
-            filterType === "current"
+          className={`px-3 py-1 rounded ${filterType === "current"
               ? "bg-red-600 text-white"
               : "bg-white/10 text-gray-400"
-          }`}
+            }`}
         >
           Current Lecture
         </button>
 
         <button
           onClick={() => setFilterType("all")}
-          className={`px-3 py-1 rounded ${
-            filterType === "all"
+          className={`px-3 py-1 rounded ${filterType === "all"
               ? "bg-red-600 text-white"
               : "bg-white/10 text-gray-400"
-          }`}
+            }`}
         >
           All Lectures
         </button>
@@ -160,6 +156,5 @@ function Notes() {
     </div>
   );
 }
-
 export default Notes;
 

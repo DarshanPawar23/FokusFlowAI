@@ -6,7 +6,6 @@ function VideoDisplay() {
   const [currentSection, setCurrentSection] = useState("");
   const iframeRef = useRef(null);
 
-  // Load course
   useEffect(() => {
     loadCourse();
     window.addEventListener("courseUpdated", loadCourse);
@@ -33,7 +32,6 @@ function VideoDisplay() {
     });
   };
 
-  // Auto Move to Next
   const moveToNextVideo = () => {
     const updated = [...sections];
 
@@ -45,7 +43,7 @@ function VideoDisplay() {
           // next video in same section
           if (v < updated[s].videos.length - 1) {
             updated[s].videos[v + 1].status = "playing";
-          } 
+          }
           // next section
           else if (s < updated.length - 1) {
             updated[s + 1].videos[0].status = "playing";

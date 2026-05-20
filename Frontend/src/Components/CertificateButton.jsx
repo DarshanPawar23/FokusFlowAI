@@ -46,15 +46,12 @@ function CertificateButton({ playlistId }) {
 
   return (
     <>
-      {/* 🔥 MAIN BUTTON */}
       <button
         onClick={() => setOpen(true)}
         className="px-10 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition"
       >
         Get Certificate
       </button>
-
-      {/* 🔥 MODAL */}
       <AnimatePresence>
         {open && (
           <motion.div

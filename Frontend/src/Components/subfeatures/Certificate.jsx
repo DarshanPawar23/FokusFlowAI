@@ -8,7 +8,7 @@ function Certificate() {
   const [progress, setProgress] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const shouldReduceMotion = useReducedMotion(); 
+  const shouldReduceMotion = useReducedMotion();
 
   const playlistId = localStorage.getItem("currentPlaylistId");
 
@@ -75,7 +75,7 @@ function Certificate() {
       rotate: [0, 360],
       transition: {
         duration: 1.5,
-        delay: i * 0.05 + 0.3, 
+        delay: i * 0.05 + 0.3,
         ease: "easeOut",
       }
     })
@@ -91,7 +91,7 @@ function Certificate() {
       }
 
       let start = 0;
-      const duration = 1500; 
+      const duration = 1500;
       const interval = Math.floor(duration / finalValue);
 
       if (finalValue === 0) return;
@@ -104,7 +104,7 @@ function Certificate() {
         }
       }, interval);
 
-      return () => clearInterval(counter); 
+      return () => clearInterval(counter);
     }, [finalValue, shouldReduceMotion]);
 
     return (
@@ -211,18 +211,18 @@ function Certificate() {
             </motion.button>
           )}
 
-         {passed && (
-  <div className="flex flex-col items-center gap-6">
+          {passed && (
+            <div className="flex flex-col items-center gap-6">
 
-    <div className="px-8 py-4 bg-green-950/40 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-widest rounded-xl inline-flex items-center gap-2 shadow-inner">
-      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-      Course Completed
-    </div>
+              <div className="px-8 py-4 bg-green-950/40 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-widest rounded-xl inline-flex items-center gap-2 shadow-inner">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                Course Completed
+              </div>
 
-    <CertificateButton playlistId={playlistId} />
+              <CertificateButton playlistId={playlistId} />
 
-  </div>
-)}
+            </div>
+          )}
 
         </div>
 

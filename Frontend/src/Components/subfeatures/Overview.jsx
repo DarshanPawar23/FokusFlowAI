@@ -15,7 +15,6 @@ function Overview() {
       }
     }
   }, []);
-
   if (!overview) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500 animate-pulse">
@@ -39,7 +38,7 @@ function Overview() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial="hidden"
       animate="visible"
       variants={containerVars}
@@ -91,12 +90,12 @@ function Overview() {
             <div className="h-8 w-1 bg-red-600 rounded-full" />
             <h3 className="text-xl font-bold text-white italic">Learning Objectives</h3>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {overview.whatYouWillLearn?.map((item, index) => (
-              <motion.div 
+              <motion.div
                 whileHover={{ x: 5 }}
-                key={index} 
+                key={index}
                 className="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5"
               >
                 <CheckCircle2 size={18} className="text-red-500 mt-1 flex-shrink-0" />

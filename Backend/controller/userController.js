@@ -11,99 +11,99 @@ import { generateAITutorResponse } from "../services/aiTutorService.js";
 import { generateRecommendedQuestions } from "../services/generateRecommendedQuestions.js";
 
 export const registerUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: "Email and password are required"
-            });
-        }
-        const [existingUser] = await db.query(
-            "SELECT id FROM users WHERE email = ?",
-            [email]
-        );
-        if (existingUser.length > 0) {
-            return res.status(409).json({
-                success: false,
-                message: "Email already registered"
-            });
-        }
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        await db.query(
-            "INSERT INTO users (email, password) VALUES (?, ?)",
-            [email, hashedPassword]
-        );
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required"
+      });
+    }
+    const [existingUser] = await db.query(
+      "SELECT id FROM users WHERE email = ?",
+      [email]
+    );
+    if (existingUser.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Email already registered"
+      });
+    }
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    await db.query(
+      "INSERT INTO users (email, password) VALUES (?, ?)",
+      [email, hashedPassword]
+    );
 
-        return res.status(201).json({
-            success: true,
-            message: "User registered successfully"
-        });
-    }
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Server error",
-            error: error.message
-        });
-    }
+    return res.status(201).json({
+      success: true,
+      message: "User registered successfully"
+    });
+  }
+  catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message
+    });
+  }
 };
 
 export const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: "Email and password are required"
-            });
-        }
-        const [user] = await db.query(
-            "SELECT * FROM users WHERE email = ?",
-            [email]
-        );
-        if (user.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found"
-            });
-        }
-        const isMatch = await bcrypt.compare(
-            password,
-            user[0].password
-        );
-
-        if (!isMatch) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid credentials"
-            });
-        }
-        const token = jwt.sign(
-            {
-                id: user[0].id,
-                email: user[0].email
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: "1d" }
-        );
-
-        return res.status(200).json({
-            success: true,
-            message: "Login successful",
-            token
-        });
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required"
+      });
     }
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Server error",
-            error: error.message
-        });
+    const [user] = await db.query(
+      "SELECT * FROM users WHERE email = ?",
+      [email]
+    );
+    if (user.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
     }
+    const isMatch = await bcrypt.compare(
+      password,
+      user[0].password
+    );
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
+    const token = jwt.sign(
+      {
+        id: user[0].id,
+        email: user[0].email
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token
+    });
+  }
+  catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message
+    });
+  }
 };
 
 export const addPlaylist = async (req, res) => {
@@ -197,41 +197,41 @@ export const addPlaylist = async (req, res) => {
   }
 };
 export const getCurrentCourse = async (req, res) => {
-    try {
-        const [course] = await db.query(
-            `SELECT structured_data, overview_data 
+  try {
+    const [course] = await db.query(
+      `SELECT structured_data, overview_data 
              FROM playlists 
              WHERE user_id = ? 
              ORDER BY created_at DESC 
              LIMIT 1`,
-            [req.user.id]
-        );
+      [req.user.id]
+    );
 
-        if (course.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "No course found"
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            structured:
-                typeof course[0].structured_data === "string"
-                    ? JSON.parse(course[0].structured_data)
-                    : course[0].structured_data,
-            overview:
-                typeof course[0].overview_data === "string"
-                    ? JSON.parse(course[0].overview_data)
-                    : course[0].overview_data
-        });
-
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error.message
-        });
+    if (course.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No course found"
+      });
     }
+
+    return res.status(200).json({
+      success: true,
+      structured:
+        typeof course[0].structured_data === "string"
+          ? JSON.parse(course[0].structured_data)
+          : course[0].structured_data,
+      overview:
+        typeof course[0].overview_data === "string"
+          ? JSON.parse(course[0].overview_data)
+          : course[0].overview_data
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
 };
 
 export const addNote = async (req, res) => {
@@ -287,7 +287,7 @@ export const getNotes = async (req, res) => {
 
     const values = [userId, playlistId];
 
-    // 🔥 Filter by current video
+    
     if (type === "current" && videoId) {
       query += " AND video_id = ?";
       values.push(videoId);
@@ -331,17 +331,17 @@ export const createExam = async (req, res) => {
     const playlistId = playlist[0].id;
 
     const [existing] = await db.query(
-  "SELECT id FROM exams WHERE playlist_id = ? ORDER BY created_at DESC LIMIT 1",
-  [playlistId]
-);
+      "SELECT id FROM exams WHERE playlist_id = ? ORDER BY created_at DESC LIMIT 1",
+      [playlistId]
+    );
 
-if (existing.length > 0) {
-  return res.json({
-    success: true,
-    examId: existing[0].id,
-    message: "Using existing exam"
-  });
-}
+    if (existing.length > 0) {
+      return res.json({
+        success: true,
+        examId: existing[0].id,
+        message: "Using existing exam"
+      });
+    }
 
     const structured = typeof playlist[0].structured_data === "string"
       ? JSON.parse(playlist[0].structured_data)
@@ -387,7 +387,7 @@ if (existing.length > 0) {
 
   } catch (error) {
     console.error(" Create Exam Error:", error);
-    
+
     if (error.status === 429 || error.message?.includes("429")) {
       return res.status(429).json({
         success: false,

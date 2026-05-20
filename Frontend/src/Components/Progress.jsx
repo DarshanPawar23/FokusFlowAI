@@ -26,7 +26,6 @@ function Progress() {
       if (data.success) {
         setProgress(data.data);
 
-        // 🔥 calculate average %
         const valid = data.data.filter(p => p.percentage !== null);
 
         if (valid.length > 0) {
@@ -35,13 +34,13 @@ function Progress() {
         }
       }
     } catch (err) {
-      console.error("❌ Progress fetch error:", err);
+      console.error(" Progress fetch error:", err);
     }
   };
 
   return (
     <div className="flex items-center gap-3 bg-white/[0.03] border border-white/10 px-4 py-2 rounded-xl backdrop-blur-xl">
-      
+
       <BarChart3 size={18} className="text-blue-400" />
 
       <div className="flex flex-col leading-tight">
@@ -50,7 +49,7 @@ function Progress() {
         </span>
 
         <span className="text-sm font-black text-white">
-          {avg}% 
+          {avg}%
         </span>
       </div>
 

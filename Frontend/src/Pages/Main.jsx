@@ -7,69 +7,65 @@ function Main() {
   const [courseTitle, setCourseTitle] = useState("Loading Course...");
 
   useEffect(() => {
-  const fetchCourse = async () => {
-    try {
-      const token = localStorage.getItem("token");
+    const fetchCourse = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        "http://localhost:3000/api/users/current-course",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.success) {
-
-        // Store structured course
-        localStorage.setItem(
-          "currentCourse",
-          JSON.stringify(data.structured || [])
+        const response = await fetch(
+          "http://localhost:3000/api/users/current-course",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
-        // Store notes
-        localStorage.setItem(
-          "courseNotes",
-          JSON.stringify(data.notes || [])
-        );
+        const data = await response.json();
 
-
-        localStorage.setItem(
-          "courseOverview",
-          JSON.stringify(data.overview || null)
-        );
-
-        if (Array.isArray(data.structured) && data.structured.length > 0) {
-          setCourseTitle(
-            data.structured[0]?.sectionTitle ||
-            data.structured[0]?.videos?.[0]?.title ||
-            "My AI Academy"
+        if (data.success) {
+          localStorage.setItem(
+            "currentCourse",
+            JSON.stringify(data.structured || [])
           );
-        } else {
-          setCourseTitle("My AI Academy");
-        }
-      }
-    } catch (err) {
-      console.error("Failed to sync course data");
-      setCourseTitle("My AI Academy");
-    }
-  };
+          localStorage.setItem(
+            "courseNotes",
+            JSON.stringify(data.notes || [])
+          );
 
-  fetchCourse();
-}, []);
+
+          localStorage.setItem(
+            "courseOverview",
+            JSON.stringify(data.overview || null)
+          );
+
+          if (Array.isArray(data.structured) && data.structured.length > 0) {
+            setCourseTitle(
+              data.structured[0]?.sectionTitle ||
+              data.structured[0]?.videos?.[0]?.title ||
+              "My AI Academy"
+            );
+          } else {
+            setCourseTitle("My AI Academy");
+          }
+        }
+      } catch (err) {
+        console.error("Failed to sync course data");
+        setCourseTitle("My AI Academy");
+      }
+    };
+
+    fetchCourse();
+  }, []);
 
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-black font-sans text-white">
-      
+
       {/* NAVBAR */}
       <nav className="relative z-50 w-full bg-[#111111] border-b border-white/5 px-6 py-3 flex items-center justify-between shadow-2xl">
-        
+
         <div className="flex items-center space-x-6">
-          
+
           <div className="flex items-center space-x-2 border-r border-white/10 pr-6 font-black uppercase italic tracking-tighter text-lg">
             <div className="p-1.5 bg-red-600 rounded-lg">
               <BookOpen size={20} />
@@ -84,7 +80,7 @@ function Main() {
         </div>
 
         <div className="flex items-center space-x-8">
-          
+
           <div className="flex items-center space-x-3">
             <Trophy size={18} className="text-red-600" />
             <div className="flex flex-col">
@@ -114,14 +110,12 @@ function Main() {
         </div>
       </div>
 
-     <style>{`
+      <style>{`
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 `}</style>
 
-
     </div>
   );
 }
-
 export default Main;

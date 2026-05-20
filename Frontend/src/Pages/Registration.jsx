@@ -59,13 +59,13 @@ function Registration() {
       </div>
 
       <div className="relative w-full flex h-screen z-10">
-        
+
         <div className="w-1/2 flex flex-col p-16 justify-between text-white bg-gradient-to-r from-black/80 to-transparent">
           <div className="flex items-center space-x-4">
-             <div className="p-3 bg-red-600 rounded-xl shadow-xl shadow-red-600/20">
-                <BookOpen size={28} strokeWidth={2.5} />
-             </div>
-             <span className="text-3xl font-black tracking-tighter uppercase italic">Fokusflow AI</span>
+            <div className="p-3 bg-red-600 rounded-xl shadow-xl shadow-red-600/20">
+              <BookOpen size={28} strokeWidth={2.5} />
+            </div>
+            <span className="text-3xl font-black tracking-tighter uppercase italic">Fokusflow AI</span>
           </div>
 
           <div className="max-w-xl animate-slide">
@@ -81,7 +81,7 @@ function Registration() {
               <span className="px-4 py-2 bg-white/10 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">Smart Tutors</span>
             </div>
           </div>
-          
+
           <div className="text-xs text-gray-500 uppercase tracking-[0.3em] font-semibold">Engineering Mastery © 2026</div>
         </div>
 
@@ -98,7 +98,7 @@ function Registration() {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="group space-y-2">
                 <label className="text-sm uppercase text-gray-400 font-black tracking-widest group-focus-within:text-red-500 transition-colors">
-                 Email
+                  Email
                 </label>
                 <input
                   type="email"

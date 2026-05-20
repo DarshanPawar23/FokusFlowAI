@@ -26,12 +26,9 @@ function Login() {
       });
 
       const data = await response.json();
-
-      // Verify that user exists and password is correct via backend response
       if (response.ok && data.success) {
         setMessage("Access Granted. Entering Academy...");
         
-        // Store JWT token for session persistence
         localStorage.setItem("token", data.token);
         
         setTimeout(() => navigate("/Home"), 1200);
@@ -67,7 +64,6 @@ function Login() {
 
       <div className="relative w-full flex h-screen z-10">
         
-        {/* Left Side: Brand Identity */}
         <div className="w-1/2 flex flex-col p-16 justify-between text-white bg-gradient-to-r from-black/80 to-transparent">
           <div className="flex items-center space-x-4">
              <div className="p-3 bg-red-600 rounded-xl shadow-xl shadow-red-600/20">
@@ -180,5 +176,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;

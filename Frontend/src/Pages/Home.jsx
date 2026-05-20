@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  BookOpen, 
-  Search, 
-  Sparkles, 
-  GraduationCap, 
-  Zap, 
-  ShieldCheck, 
-  Layout, 
-  Trophy, 
-  ArrowRight 
+import {
+  BookOpen,
+  Search,
+  Sparkles,
+  GraduationCap,
+  Zap,
+  ShieldCheck,
+  Layout,
+  Trophy,
+  ArrowRight
 } from "lucide-react";
 
-// Assuming these are your components
-import Progress from "../Components/Progress"; 
+import Progress from "../Components/Progress";
 import CourseProgress from "../Components/CourseProgress";
-// If youtubeLogo is a URL or local asset
-import youtubeLogo from "../assets/youtube.png"; 
+import youtubeLogo from "../assets/youtube.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -50,7 +48,6 @@ const Home = () => {
       if (data.success) {
         localStorage.setItem("currentCourse", JSON.stringify(data.structured));
         localStorage.setItem("currentPlaylistId", data.playlistId);
-        // Smooth transition
         setTimeout(() => navigate("/Main"), 2000);
       } else {
         alert(data.message || "Failed to process playlist");
@@ -64,12 +61,12 @@ const Home = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col relative overflow-x-hidden bg-[#050505] font-sans text-white selection:bg-red-500/30">
-      
+
       {/* Dynamic Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#3d0000,transparent_50%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black" />
-        
+
         {/* Floating Icons Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           {[...Array(15)].map((_, i) => (
@@ -90,7 +87,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="relative z-50 w-full max-w-7xl mx-auto px-4 pt-6">
         <div className="flex items-center justify-between bg-white/[0.03] backdrop-blur-2xl border border-white/10 px-6 py-3 rounded-full shadow-2xl">
           <div className="flex items-center space-x-3 group cursor-pointer">
@@ -119,7 +115,6 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <main className="relative z-10 flex-grow flex flex-col items-center justify-center px-6 pt-20 pb-32">
         <div className="text-center space-y-8 max-w-4xl animate-slideUp">
           <div className="inline-flex items-center space-x-2 bg-red-600/10 border border-red-600/20 px-4 py-1.5 rounded-full text-red-500 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -138,8 +133,6 @@ const Home = () => {
             We turn chaotic YouTube playlists into <span className="text-white">curated courses</span> with AI quizzes, scheduling, and progress tracking.
           </p>
         </div>
-
-        {/* Search / Converter */}
         <form
           onSubmit={handleConvert}
           className="mt-16 w-full max-w-3xl relative animate-slideUp"
@@ -165,16 +158,16 @@ const Home = () => {
               {!isConverting && <Zap size={16} fill="currentColor" />}
             </button>
           </div>
-          
+
           <div className="mt-4 flex justify-center space-x-6 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-            <span className="flex items-center gap-1.5"><Layout size={12}/> Auto-Modules</span>
-            <span className="flex items-center gap-1.5"><Trophy size={12}/> AI Assessments</span>
-            <span className="flex items-center gap-1.5"><ArrowRight size={12}/> PDF Notes</span>
+            <span className="flex items-center gap-1.5"><Layout size={12} /> Auto-Modules</span>
+            <span className="flex items-center gap-1.5"><Trophy size={12} /> AI Assessments</span>
+            <span className="flex items-center gap-1.5"><ArrowRight size={12} /> PDF Notes</span>
           </div>
         </form>
 
         <div className="mt-20 w-full max-w-5xl animate-slideUp" style={{ animationDelay: "0.4s" }}>
-           <CourseProgress />
+          <CourseProgress />
         </div>
       </main>
 
@@ -187,7 +180,7 @@ const Home = () => {
               <a href="#" className="hover:text-red-500">API Documentation</a>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-10">
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400">
               <ShieldCheck size={16} className="text-red-600" />
@@ -232,5 +225,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

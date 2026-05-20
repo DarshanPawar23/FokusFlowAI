@@ -272,17 +272,15 @@ function Exam() {
                       <button
                         key={i}
                         onClick={() => handleSelect(index, i)}
-                        className={`group relative flex items-center justify-between w-full text-left px-6 py-4 rounded-2xl border transition-all duration-300 ${
-                          isSelected
+                        className={`group relative flex items-center justify-between w-full text-left px-6 py-4 rounded-2xl border transition-all duration-300 ${isSelected
                             ? "bg-blue-600 border-blue-400 shadow-[0_0_20px_-5px_rgba(59,130,246,0.4)] text-white"
                             : "bg-white/5 border-white/5 hover:border-white/20 text-slate-300 hover:bg-white/10"
-                        }`}
+                          }`}
                       >
                         <span className="font-medium pr-4">{opt}</span>
                         <div
-                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
-                            isSelected ? "bg-white border-white" : "border-slate-600"
-                          }`}
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${isSelected ? "bg-white border-white" : "border-slate-600"
+                            }`}
                         >
                           {isSelected && <div className="w-2 h-2 bg-blue-600 rounded-full" />}
                         </div>
@@ -304,11 +302,10 @@ function Exam() {
             <button
               onClick={submitExam}
               disabled={answeredCount !== questions.length}
-              className={`w-full group py-4 rounded-[1.5rem] font-bold text-lg flex items-center justify-center gap-3 transition-all ${
-                answeredCount === questions.length
+              className={`w-full group py-4 rounded-[1.5rem] font-bold text-lg flex items-center justify-center gap-3 transition-all ${answeredCount === questions.length
                   ? "bg-white text-black hover:scale-[1.02] active:scale-95"
                   : "bg-slate-800 text-slate-500 cursor-not-allowed opacity-50"
-              }`}
+                }`}
             >
               {answeredCount === questions.length ? (
                 <>

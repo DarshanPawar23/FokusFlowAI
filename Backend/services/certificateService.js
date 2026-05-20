@@ -77,7 +77,6 @@ export const generateCertificatePDF = async ({
 
       doc.image(qrImage, qrX, qrY, { width: qrSize });
 
-      // 🔥 DATE + ID (aligned properly with QR)
       const date = new Date().toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",

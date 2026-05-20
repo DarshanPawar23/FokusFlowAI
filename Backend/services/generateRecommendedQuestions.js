@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const generateRecommendedQuestions = async ({ transcript, videoTitle }) => {
   try {
-   const prompt = `
+    const prompt = `
 You are an expert YouTube learning assistant.
 
 STRICT RULES:

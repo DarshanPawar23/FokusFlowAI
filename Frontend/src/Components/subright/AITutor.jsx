@@ -12,24 +12,24 @@ function AITutor() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-  const loadVideo = () => {
-    const title = localStorage.getItem("currentVideoTitle");
-    const transcript = localStorage.getItem("currentTranscript");
+    const loadVideo = () => {
+      const title = localStorage.getItem("currentVideoTitle");
+      const transcript = localStorage.getItem("currentTranscript");
 
-    console.log("Loaded video:", title, transcript);
+      console.log("Loaded video:", title, transcript);
 
-    if (title) setVideoTitle(title);
-    if (transcript) setTranscript(transcript);
-  };
+      if (title) setVideoTitle(title);
+      if (transcript) setTranscript(transcript);
+    };
 
-  loadVideo();
+    loadVideo();
 
-  window.addEventListener("courseUpdated", loadVideo);
+    window.addEventListener("courseUpdated", loadVideo);
 
-  return () => {
-    window.removeEventListener("courseUpdated", loadVideo);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("courseUpdated", loadVideo);
+    };
+  }, []);
 
   const askTutor = async (customQuestion) => {
     const finalQuestion = customQuestion || input;
