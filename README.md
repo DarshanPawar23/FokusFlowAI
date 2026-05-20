@@ -1,145 +1,109 @@
 # 🚀 Fokus AI  
-## Decentralized Skill Verification Infrastructure using Algorand
+### AI-Powered Course Generation & Intelligent Certification
 
-Fokus AI is an AI-powered learning and certification platform that combines  
-**Generative AI + Algorand Blockchain** to create tamper-proof, verifiable digital certificates.
+Fokus AI is an advanced AI-powered learning platform that transforms unstructured YouTube playlists into **structured, interactive courses**.
 
-Instead of just issuing certificates, Fokus AI builds a **decentralized verification layer**  
-that ensures authenticity, trust, and ownership of skills.
+Powered by the **Groq Cloud API** and the **LLaMA 3.1 (8B Instant)** model, Fokus AI intelligently analyzes video content to:
 
----
-
-# 🧠 Problem
-
-Traditional online certificates:
-- Can be forged or edited
-- Are stored in centralized systems
-- Cannot be independently verified
-- Lack trust and authenticity
+- 📚 Generate structured course modules  
+- 🧠 Create concise AI-driven summaries  
+- 📝 Build dynamic assessments (MCQs)  
+- 🎓 Automatically deliver professional certificates via email  
 
 ---
 
-# ✅ Our Solution
+## 🧠 The Problem
 
-We store a **SHA256 certificate hash on Algorand blockchain**, making every certificate:
+Self-paced learning via YouTube often lacks:
 
-✔ Immutable  
-✔ Publicly verifiable  
-✔ Tamper-proof  
-✔ Trustless  
-
-Each certificate is generated as:
-
-```
-certificateHash = SHA256(userId + examId + score + certificateId)
-```
-
-On-chain mapping:
-
-```
-certificateId → certificateHash
-```
+- **Structure:** Playlists are disorganized or overwhelming  
+- **Retention:** No workspace for notes or revision  
+- **Validation:** No way to test knowledge or prove completion  
+- **Efficiency:** Hours of content needed for basic understanding  
 
 ---
 
-# 🏗️ Architecture
+## ✅ Our Solution
 
-Frontend (React)  
-↓  
-Backend (Node.js + MySQL)  
-↓  
-Algorand Smart Contract (Testnet)  
-↓  
-Public Verification Endpoint  
+Fokus AI automates the complete **"Learner → Certified" pipeline**:
 
----
+### 🔹 1. AI Course Structuring  
+Converts any YouTube playlist into well-organized modules using AI.
 
-# 🔷 Blockchain Implementation
+### 🔹 2. Smart Overviews  
+Generates quick summaries so users understand content faster.
 
-### Phase 1 — Smart Contract
-- Installed AlgoKit
-- Created stateful contract
-- Implemented `issue_certificate`
-- Stored certificateHash in global state
-- Deployed to Algorand Testnet
-- Obtained Application ID
+### 🔹 3. Dynamic Exam Engine  
+Creates contextual MCQs to test real understanding.
 
-### Phase 2 — Backend Integration
-On exam pass (≥60%):
-1. Generate certificateId (UUID)
-2. Create SHA256 hash
-3. Call smart contract:
-   ```
-   issue_certificate(certificateId, certificateHash)
-   ```
-4. Store blockchain transaction ID
+### 🔹 4. Automated Certification  
+Generates and emails professional certificates instantly after passing.
 
-### Verification Flow
-```
-recalculatedHash === storedHash === onChainHash
-```
-If true → Certificate is valid.
+### 🔹 5. Integrated Notes System  
+Allows users to write and store notes for every course.
 
 ---
 
-# 🤖 Generative AI Integration
+## 🏗️ Tech Stack
 
-### 1️⃣ AI Course Structuring
-- Converts YouTube playlists into structured modules
-- Generates learning roadmap & overview
-
-### 2️⃣ AI Exam Generation
-- Generates contextual MCQs
-- Evaluates automatically
-- Unlocks certificate on pass
-
-AI ensures intelligent assessment before blockchain issuance.
+- **Frontend:** React.js, Tailwind CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MySQL  
+- **AI Engine:** Groq Cloud API (LLaMA 3.1 - 8B Instant)  
+- **Mailing:** Nodemailer (SMTP)  
+- **PDF Generation:** PDFKit  
+- **External APIs:** YouTube Data API v3  
 
 ---
 
-# 🔐 Security Model
+## 🚀 Getting Started (All-in-One)
 
-- Only certificate hash stored on-chain
-- Immutable Algorand smart contract
-- Backend-controlled wallet issuance
-- Public verification endpoint
+```bash
+# ==============================
+# 1️⃣ Clone the Repository
+# ==============================
 
----
+git clone https://github.com/your-username/fokus-ai.git
+cd fokus-ai
 
-# 🌐 Why Algorand?
+# ==============================
+# 2️⃣ Install Dependencies
+# ==============================
 
-- Instant finality
-- Low transaction fees
-- Energy efficient
-- Scalable smart contracts
+npm install
 
-Algorand enables real-world decentralized credential infrastructure.
+cd client
+npm install
+cd ..
 
----
+# ==============================
+# 3️⃣ Environment Setup
+# ==============================
 
-# 🪪 Future Upgrade (Optional)
+# Create a .env file in root and add:
 
-- Soulbound NFT Certificates
-- Wallet-bound digital identity
-- On-chain reputation layer
+PORT=5000
+JWT_SECRET=your_jwt_secret
 
----
+DB_HOST=localhost
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=fokus_ai
+DB_PORT=3306
 
-# 🧠 Tech Stack
+YT_API_KEY=your_youtube_api_key
+GROQ_API_KEY=your_groq_api_key
 
-Frontend: React, Tailwind  
-Backend: Node.js, Express, MySQL  
-Blockchain: Algorand Testnet, AlgoKit, Algorand JS SDK  
-AI: Generative AI (Course structuring + Exam generation)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
 
----
+# ==============================
+# 4️⃣ Run Application
+# ==============================
 
-# 🏆 What This Is
+# Run backend
+npm run dev
 
-Not a blockchain demo.
-
-Fokus AI is:
-
-> A Decentralized Skill Verification Engine
-
-Building trust in digital education through AI + Blockchain.
+# Run frontend (open new terminal)
+cd client
+npm start
