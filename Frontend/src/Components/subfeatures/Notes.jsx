@@ -22,9 +22,9 @@ function Notes() {
       let url = "";
 
       if (filterType === "current") {
-        url = `http://localhost:3000/api/users/get-Notes?playlistId=${playlistId}&videoId=${videoId}&type=current`;
+        url = `${import.meta.env.VITE_API_URL}/api/users/get-Notes?playlistId=${playlistId}&videoId=${videoId}&type=current`;
       } else {
-        url = `http://localhost:3000/api/users/get-Notes?playlistId=${playlistId}`;
+        url = `${import.meta.env.VITE_API_URL}/api/users/get-Notes?playlistId=${playlistId}`;
       }
 
       const res = await fetch(url, {
@@ -55,7 +55,7 @@ function Notes() {
 
     try {
       const res = await fetch(
-        "http://localhost:3000/api/users/add-Note",
+        `${import.meta.env.VITE_API_URL}/api/users/add-Note`,
         {
           method: "POST",
           headers: {

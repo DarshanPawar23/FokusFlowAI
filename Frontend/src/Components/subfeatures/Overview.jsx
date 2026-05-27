@@ -23,7 +23,6 @@ function Overview() {
     );
   }
 
-  // Animation Variants
   const containerVars = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +43,7 @@ function Overview() {
       variants={containerVars}
       className="max-w-5xl mx-auto space-y-12 pb-10"
     >
-      {/* HEADER SECTION */}
+
       <motion.div variants={itemVars} className="border-b border-white/10 pb-8">
         <div className="flex items-center gap-2 mb-4">
           <span className="bg-red-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter">Featured Course</span>
@@ -61,7 +60,6 @@ function Overview() {
         </p>
       </motion.div>
 
-      {/* KEY STATS GRID */}
       <motion.div variants={itemVars} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { icon: Clock, label: "Duration", value: `${overview.totalHours} hrs`, color: "text-blue-400" },
@@ -83,7 +81,6 @@ function Overview() {
         ))}
       </motion.div>
 
-      {/* CORE LEARNING OBJECTIVES */}
       <motion.div variants={itemVars} className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
           <div className="flex items-center gap-3">

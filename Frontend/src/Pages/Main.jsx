@@ -12,7 +12,7 @@ function Main() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:3000/api/users/current-course",
+          `${import.meta.env.VITE_API_URL}/api/users/current-course`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -61,7 +61,6 @@ function Main() {
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-black font-sans text-white">
 
-      {/* NAVBAR */}
       <nav className="relative z-50 w-full bg-[#111111] border-b border-white/5 px-6 py-3 flex items-center justify-between shadow-2xl">
 
         <div className="flex items-center space-x-6">

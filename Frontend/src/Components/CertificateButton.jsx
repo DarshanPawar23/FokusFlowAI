@@ -17,7 +17,7 @@ function CertificateButton({ playlistId }) {
 
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:3000/api/certificate/generate", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/certificate/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

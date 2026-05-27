@@ -24,7 +24,7 @@ function Exam() {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:3000/api/users/create-exam", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/create-exam`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function Exam() {
       setExamId(data.examId);
 
       const questionRes = await fetch(
-        `http://localhost:3000/api/users/get-exam-questions/${data.examId}`,
+        `${import.meta.env.VITE_API_URL}/api/users/get-exam-questions/${data.examId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -91,7 +91,7 @@ function Exam() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/users/submit-exam", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/submit-exam`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

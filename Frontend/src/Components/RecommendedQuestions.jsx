@@ -11,7 +11,7 @@ function RecommendedQuestions({ transcript, videoTitle, onSelect }) {
   const fetchQuestions = async () => {
     try {
       const res = await fetch(
-        "http://localhost:3000/api/users/recommended-questions",
+       `${import.meta.env.VITE_API_URL}/api/users/recommended-questions`,
         {
           method: "POST",
           headers: {

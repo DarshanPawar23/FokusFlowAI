@@ -58,7 +58,6 @@ const CertificateDisplay = ({
           {studentName}
         </div>
 
-        {/* Exam Title */}
         <div
           style={{
             position: "absolute",
@@ -74,7 +73,6 @@ const CertificateDisplay = ({
           has successfully completed <b>{courseName}</b>
         </div>
 
-        {/* Bottom Details */}
         <div
           style={{
             position: "absolute",
@@ -108,7 +106,7 @@ const CertificateDisplay = ({
           }}
         >
           <QRCodeCanvas
-            value={`http://localhost:3000/api/users/verify/${certificateId}`}
+            value={`${import.meta.env.VITE_API_URL}/api/users/verify/${certificateId}`}
             size={130}
           />
         </div>

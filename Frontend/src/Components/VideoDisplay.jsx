@@ -40,7 +40,6 @@ function VideoDisplay() {
         if (updated[s].videos[v].status === "playing") {
           updated[s].videos[v].status = "completed";
 
-          // next video in same section
           if (v < updated[s].videos.length - 1) {
             updated[s].videos[v + 1].status = "playing";
           }
@@ -72,7 +71,6 @@ function VideoDisplay() {
           allow="autoplay; encrypted-media"
           allowFullScreen
           onLoad={() => {
-            // Detect end via postMessage
             window.addEventListener("message", function (event) {
               if (event.data === '{"event":"onStateChange","info":0}') {
                 moveToNextVideo();

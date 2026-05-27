@@ -20,7 +20,7 @@ function CourseProgress() {
 
             if (!token) return;
 
-            const res = await fetch("http://localhost:3000/api/users/all-courses", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/all-courses`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -38,14 +38,14 @@ function CourseProgress() {
         const token = localStorage.getItem("token");
 
         await fetch(
-            `http://localhost:3000/api/users/delete-playlist/${playlistId}`,
+            `${import.meta.env.VITE_API_URL}/api/users/delete-playlist/${playlistId}`,
             {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` }
             }
         );
 
-        fetchCourses(); // refresh after delete
+        fetchCourses(); 
     };
 
     return (
@@ -124,7 +124,6 @@ function CourseProgress() {
                                 Resume
                             </button>
 
-                            {/* DELETE */}
                             <button
                                 onClick={() => handleDelete(course.id)}
                                 className="px-3 py-3 bg-red-600/20 border border-red-500/30 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all"

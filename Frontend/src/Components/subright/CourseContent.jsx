@@ -65,7 +65,6 @@ It teaches:
   return (
     <div className="flex flex-col h-full bg-[#0b0b0f] border-l border-white/5">
 
-      {/* HEADER */}
       <div className="p-6 border-b border-white/5 bg-[#111116]">
         <h3 className="text-[11px] font-bold text-red-600 uppercase tracking-widest">
           AI Generated Curriculum

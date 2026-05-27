@@ -32,7 +32,7 @@ const Home = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/users/add-playlist", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/add-playlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,12 +62,10 @@ const Home = () => {
   return (
     <div className="min-h-screen w-full flex flex-col relative overflow-x-hidden bg-[#050505] font-sans text-white selection:bg-red-500/30">
 
-      {/* Dynamic Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#3d0000,transparent_50%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black" />
 
-        {/* Floating Icons Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           {[...Array(15)].map((_, i) => (
             <img

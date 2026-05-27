@@ -37,7 +37,6 @@ function Right() {
           );
         })}
 
-        {/* Sliding underline */}
         <div
           className="absolute bottom-0 h-[3px] w-1/2 bg-gradient-to-r from-red-600 to-red-500 transition-all duration-500 ease-out shadow-[0_0_15px_rgba(220,38,38,0.6)]"
           style={{
@@ -48,7 +47,6 @@ function Right() {
           }}
         />
 
-        {/* Soft active background glow */}
         <div
           className="absolute inset-y-0 w-1/2 bg-white/[0.02] transition-all duration-500 pointer-events-none"
           style={{
