@@ -8,7 +8,12 @@ dotenv.config();
 const app = express();
 let port = 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://fokus-flow-ai.vercel.app/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
