@@ -10,7 +10,10 @@ let port = 3000;
 
 app.use(
   cors({
-    origin: "https://fokus-flow-ai.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "https://fokus-flow-ai.vercel.app",
+    ],
     credentials: true,
   })
 );
