@@ -10,9 +10,9 @@ import {
 
 import { useGroupStudy } from "../hooks/useGroupStudy";
 
-import GroupSidebar from "./GroupStudy/GroupSidebar";
-import RoomCodeCard from "./GroupStudy/RoomCodeCard";
-import EmptyGroupState from "./GroupStudy/EmptyGroupState";
+import GroupSidebar from "./groupStudy/GroupSidebar";
+import RoomCodeCard from "./groupStudy/RoomCodeCard";
+import EmptyGroupState from "./groupstudy/EmptyGroupState";
 
 function Right() {
   const { roomCode } = useGroupStudy();
