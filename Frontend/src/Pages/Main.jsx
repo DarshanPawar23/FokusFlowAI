@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { GroupStudyProvider, useGroupStudy } from "../hooks/useGroupStudy";
-import GroupStudyModal from "../Components/GroupStudy/GroupStudyModal";
+import GroupStudyModal from "../Components/groupstudy/GroupStudyModal";
 
 function MainContent() {
   const navigate = useNavigate();
