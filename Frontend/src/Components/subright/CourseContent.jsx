@@ -4,12 +4,41 @@ import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 function CourseContent() {
   const [sections, setSections] = useState([]);
   const [openSection, setOpenSection] = useState(null);
+  const [studyPlan, setStudyPlan] = useState(null);
 
   useEffect(() => {
     const savedCourse = localStorage.getItem("currentCourse");
     if (savedCourse) {
       setSections(JSON.parse(savedCourse));
     }
+
+    const fetchStudyPlan = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const playlistId = localStorage.getItem("currentPlaylistId");
+
+        if (!playlistId || !token) return;
+
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/users/${playlistId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        const data = await res.json();
+
+        if (data.success && data.studyPlan) {
+          setStudyPlan(data.studyPlan);
+        }
+      } catch (error) {
+        console.error("Failed to fetch study plan:", error);
+      }
+    };
+
+    fetchStudyPlan();
   }, []);
 
   const handleVideoClick = (sectionIndex, videoIndex) => {
@@ -24,7 +53,6 @@ function CourseContent() {
     );
 
     const selectedVideo = updated[sectionIndex].videos[videoIndex];
-
     selectedVideo.status = "playing";
 
     setSections(updated);
@@ -45,7 +73,6 @@ function CourseContent() {
         title: selectedVideo.title
       })
     );
-    console.log("Saving video with playlistId:", playlistId);
 
     localStorage.setItem(
       "currentTranscript",
@@ -64,17 +91,53 @@ It teaches:
 
   return (
     <div className="flex flex-col h-full bg-[#0b0b0f] border-l border-white/5">
+      <div className="p-6 border-b border-white/5 bg-[#111116] flex flex-col gap-5">
+        <div>
+          <h3 className="text-[11px] font-bold text-red-600 uppercase tracking-widest">
+            AI Generated Curriculum
+          </h3>
+          <h2 className="text-xl font-semibold text-white mt-1">
+            Course Content
+          </h2>
+        </div>
 
-      <div className="p-6 border-b border-white/5 bg-[#111116]">
-        <h3 className="text-[11px] font-bold text-red-600 uppercase tracking-widest">
-          AI Generated Curriculum
-        </h3>
-        <h2 className="text-xl font-semibold text-white mt-1">
-          Course Content
-        </h2>
+        {studyPlan && (
+          <div className="flex items-center gap-6 pt-1">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">
+                Finish In
+              </span>
+              <span className="text-sm font-black text-white">
+                {studyPlan.targetDays} Days
+              </span>
+            </div>
+            
+            <div className="w-px h-8 bg-white/10"></div>
+            
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">
+                Daily Goal
+              </span>
+              <span className="text-sm font-black text-white">
+                {studyPlan.dailyHours} hrs
+              </span>
+            </div>
+            
+            <div className="w-px h-8 bg-white/10"></div>
+            
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">
+                Estimated
+              </span>
+              <span className="text-sm font-black text-white">
+                {studyPlan.estimatedHours} Hours
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
-      <div className="flex-grow overflow-y-auto">
+      <div className="flex-grow overflow-y-auto no-scrollbar">
         {sections.map((section, sectionIndex) => (
           <div key={sectionIndex} className="border-b border-white/5">
             <div
@@ -97,7 +160,7 @@ It teaches:
                 </h4>
               </div>
 
-              <span className="text-xs text-gray-500">
+              <span className="text-xs font-bold tracking-widest uppercase text-gray-500">
                 {section.videos.length} lectures
               </span>
             </div>
@@ -108,34 +171,45 @@ It teaches:
                   <div
                     key={video.videoId}
                     onClick={() => handleVideoClick(sectionIndex, videoIndex)}
-                    className={`flex items-center px-10 py-3 text-sm cursor-pointer transition-all ${video.status === "playing"
-                      ? "bg-red-600/10 text-red-500"
-                      : video.status === "completed"
-                        ? "text-green-400"
-                        : "text-gray-300 hover:bg-white/[0.04]"
-                      }`}
+                    className={`flex items-center px-10 py-3 text-sm cursor-pointer transition-all ${
+                      video.status === "playing"
+                        ? "bg-red-600/10 text-red-500 border-l-2 border-red-500"
+                        : video.status === "completed"
+                        ? "text-green-400 border-l-2 border-transparent"
+                        : "text-gray-300 hover:bg-white/[0.04] border-l-2 border-transparent"
+                    }`}
                   >
                     <PlayCircle
                       size={16}
-                      className={`mr-3 ${video.status === "playing"
-                        ? "text-red-500"
-                        : video.status === "completed"
+                      className={`mr-3 min-w-[16px] ${
+                        video.status === "playing"
+                          ? "text-red-500"
+                          : video.status === "completed"
                           ? "text-green-400"
                           : "text-gray-500"
-                        }`}
+                      }`}
                     />
 
-                    <span className="truncate">
+                    <span className="truncate font-medium">
                       {video.title}
                     </span>
                   </div>
                 ))}
               </div>
             )}
-
           </div>
         ))}
       </div>
+      
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

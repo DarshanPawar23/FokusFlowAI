@@ -6,6 +6,7 @@ import Home from "../Pages/Home.jsx"
 import Main from "../Pages/Main.jsx"
 import Exam from "../Pages/Exam.jsx"
 import CertificateDisplay from '../Components/CertificateDisplay.jsx';
+import Schedule from '../Pages/Schedule.jsx';
 function Navigation(){
     return(
     <div>
@@ -17,6 +18,7 @@ function Navigation(){
                 <Route path="/Main" element={<Main />} />
                 <Route path="/exam" element={<Exam />} />
                 <Route path="/certificate/:id" element={<CertificateDisplay/>}/>
+                <Route path="/schedule" element={<Schedule/>}/>
             </Routes>
         </Router>
     </div>

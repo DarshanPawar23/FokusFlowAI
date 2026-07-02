@@ -37,10 +37,8 @@ function Registration() {
 
   return (
     <div className="min-h-screen w-full flex relative overflow-hidden bg-black font-sans">
-      {/* Moving Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-red-950 to-black animate-gradient"></div>
 
-      {/* Subtle YouTube Rain (Acknowledging the source material) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {[...Array(12)].map((_, i) => (
           <img

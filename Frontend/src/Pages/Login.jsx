@@ -24,7 +24,7 @@ function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
+      console.log(import.meta.env.VITE_API_URL);
       const data = await response.json();
       if (response.ok && data.success) {
         setMessage("Access Granted. Entering Academy...");

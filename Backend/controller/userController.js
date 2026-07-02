@@ -569,7 +569,7 @@ export const deletePlaylist = async (req, res) => {
 export const getAllCourses = async (req, res) => {
   try {
     const [courses] = await db.query(
-      `SELECT id, youtube_playlist_id, structured_data, created_at,thumbnail
+      `SELECT id, youtube_playlist_id, structured_data, created_at, thumbnail
        FROM playlists 
        WHERE user_id = ? 
        ORDER BY created_at DESC`,
@@ -579,13 +579,15 @@ export const getAllCourses = async (req, res) => {
     res.json({
       success: true,
       courses: courses.map(c => ({
-        ...c,
+        id: c.id,
+        youtube_playlist_id: c.youtube_playlist_id,
+        thumbnail: c.thumbnail, // Ensure this is explicitly passed
+        created_at: c.created_at,
         structured_data: typeof c.structured_data === "string"
           ? JSON.parse(c.structured_data)
           : c.structured_data
       }))
     });
-
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
