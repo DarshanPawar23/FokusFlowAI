@@ -10,8 +10,8 @@ import {
 
 import { useGroupStudy } from "../hooks/useGroupStudy";
 
-import GroupSidebar from "./groupStudy/GroupSidebar";
-import RoomCodeCard from "./groupStudy/RoomCodeCard";
+import GroupSidebar from "./groupstudy/GroupSidebar";
+import RoomCodeCard from "./groupstudy/RoomCodeCard";
 import EmptyGroupState from "./groupstudy/EmptyGroupState";
 
 function Right() {
